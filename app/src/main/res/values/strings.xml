@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">东华游</string>
+
+    <string name="dhu_department_1">1号学院楼</string>
+    <string name="dhu_department_2">2号学院楼</string>
+    <string name="dhu_department_3">3号学院楼</string>
+    <string name="dhu_department_4">4号学院楼</string>
+    <string name="dhu_department_5">5号学院楼</string>
+    <string name="dhu_train_center">工程训练中心</string>
+    <string name="dhu_admin">行政楼</string>
+    <string name="dhu_dining_1">1食堂</string>
+    <string name="dhu_dining_2">2食堂</string>
+    <string name="dhu_normal_lib">综合实验楼</string>
+    <string name="dhu_innovation_building">2011协同创新楼</string>
+    <string name="dhu_teach_building_1">第1教学楼</string>
+    <string name="dhu_teach_building_2">第2教学楼</string>
+    <string name="dhu_inner_stadium">体育馆</string>
+    <string name="dhu_out_stadium_1">体育场1</string>
+    <string name="dhu_out_stadium_2">体育场2</string>
+    <string name="dhu_dorm">宿舍区</string>
+    <string name="dhu_activity_center">大学生活动中心</string>
+    <string name="dhu_library">图文信息中心</string>
+    <string name="dhu_teacher_house">教师之家</string>
+    <string name="dhu_lake">镜月湖</string>
+    <string name="dhu_bridge_j">镜桥</string>
+    <string name="dhu_bridge_dh">东华桥</string>
+    <string name="dhu_bridge_sh">尚实桥</string>
+    <string name="dhu_bridge_lz">砺忠桥</string>
+    <string name="dhu_bridge_y">月桥</string>
+    <string name="dhu_gate_north">北大门</string>
+    <string name="dhu_gate_east">东大门</string>
+    <string name="dhu_road_dh">东华大道</string>
+</resources>
