@@ -21,7 +21,7 @@ public class DhuView {
         this.context = context;
         this.imageView = imageView;
         imageView.setImage(ImageSource.resource(R.drawable.dhu_full_abs));
-        initBuildings();
+        this.buildings = new DhuBuildingHelper(context).create();
         final GestureDetector gestureDetector = getGestureDetector();
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -31,16 +31,6 @@ public class DhuView {
         });
     }
 
-    private String resToStr(int resId) {
-        return context.getResources().getString(resId);
-    }
-
-    private void initBuildings() {
-        buildings = new DhuBuilding[] {
-            new DhuBuilding(316, 1045, 581, 1174, 1.8f,
-                    resToStr(R.string.dhu_department_1), "nnn", R.drawable.dhu_full_abs),
-        };
-    }
 
     public boolean moveToBuilding(DhuBuilding b) {
         SubsamplingScaleImageView.AnimationBuilder animationBuilder
@@ -68,9 +58,11 @@ public class DhuView {
                 PointF pointF = imageView.viewToSourceCoord(x, y);
                 if (pointF == null) return false;
 
+                //Toast.makeText(context, ""+pointF.x + ";" + pointF.y+"  "+imageView.getScale(), Toast.LENGTH_SHORT).show();
+
                 for (DhuBuilding b : buildings) {
                     if (b.isInBuilding(pointF)) {
-                        Toast.makeText(context, b.name, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, b.name + "  "+imageView.getScale(), Toast.LENGTH_SHORT).show();
                         return moveToBuilding(b);
                     }
                 }
