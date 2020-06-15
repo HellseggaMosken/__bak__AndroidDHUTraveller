@@ -22,25 +22,8 @@
         android:visibility="invisible"
         />
 
-    <include
-        layout="@layout/dhu_dialog" />
+    <include layout="@layout/dhu_dialog" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:translationZ="1000dp"
-        android:text="Name" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_below="@id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:translationZ="1000dp"
-        android:background="@color/colorAccent"
-        android:text="Button" />
+    <include layout="@layout/search_bar" />
 
 </RelativeLayout>

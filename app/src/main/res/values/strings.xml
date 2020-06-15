@@ -3,6 +3,7 @@
     <string name="text_gallery">图库</string>
     <string name="text_fullView">全景</string>
     <string name="picture_preview_description">picture preview</string>
+    <string name="search_hint">输入你想搜索的地名</string>
 
     <string name="dhu_department_1">1号学院楼</string>
     <string name="dhu_department_2">2号学院楼</string>

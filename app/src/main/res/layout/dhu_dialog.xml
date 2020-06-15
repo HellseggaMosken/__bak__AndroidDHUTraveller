@@ -7,10 +7,10 @@
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
-    android:layout_marginHorizontal="50dp"
+    android:layout_marginHorizontal="20dp"
     android:layout_marginVertical="100dp"
     app:cardElevation="20dp"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="14dp">
 
     <RelativeLayout
         android:layout_width="match_parent"

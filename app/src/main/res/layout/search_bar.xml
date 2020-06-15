@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_bar"
+    android:translationZ="1000dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="20sp"
+        android:layout_marginHorizontal="20sp"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="22dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <SearchView
+                android:id="@+id/search_bar_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@id/search_bar_voice"
+                android:iconifiedByDefault="false"
+                android:searchIcon="@drawable/ic_search"
+                android:closeIcon="@drawable/ic_close"
+                android:queryHint="@string/search_hint"
+                android:queryBackground="@color/colorWhite"
+                />
+
+            <TextView
+                android:id="@+id/search_bar_voice"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_voice"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_alignParentEnd="true"
+                android:paddingEnd="10dp"
+                android:paddingStart="2dp"
+                />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

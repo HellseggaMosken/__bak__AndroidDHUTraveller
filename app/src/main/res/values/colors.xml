@@ -5,4 +5,5 @@
     <color name="colorAccent">#BA68C8</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorSearchBar">#626262</color>
 </resources>

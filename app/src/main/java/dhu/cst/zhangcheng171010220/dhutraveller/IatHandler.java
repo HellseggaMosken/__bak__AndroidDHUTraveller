@@ -17,13 +17,12 @@ import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechRecognizer;
 
 public class IatHandler {
-    EditText retEditText;
+    IatAction iatAction;
     SpeechRecognizer mIat; // 语音识别模型
     StringBuffer buffer; // 识别结果
     Activity activity;
 
-    public IatHandler(Activity activity, EditText editText) {
-        this.retEditText = editText;
+    public IatHandler(Activity activity) {
         this.activity = activity;
         buffer = new StringBuffer();
         // 初始化监听器
@@ -44,12 +43,15 @@ public class IatHandler {
         Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
     }
 
+    public void setIatAction(IatAction iatAction) {
+        this.iatAction = iatAction;
+    }
+
     public boolean startListen() {
         if (!getPermission()) {
             showTip("获取权限失败");
             return false;
         }
-        retEditText.setText("");
         buffer.setLength(0);
         mIat.startListening(mIatListener);
         return true;
@@ -84,24 +86,24 @@ public class IatHandler {
 
         @Override
         public void onBeginOfSpeech() {
-            showTip("请开始说话");
+            if (iatAction != null) iatAction.onStart();
         }
 
         @Override
         public void onEndOfSpeech() {
-            showTip("语音结束");
+            if (iatAction != null) iatAction.onFinish();
         }
 
         @Override
         public void onResult(RecognizerResult recognizerResult, boolean b) {
             buffer.append(recognizerResult.getResultString());
-            retEditText.setText(buffer);
-            retEditText.setSelection(retEditText.length());
+            if (iatAction != null) iatAction.onResult(buffer);
         }
 
         @Override
         public void onError(SpeechError speechError) {
             Log.d("__xf", "识别失败：" + speechError.toString());
+            if (iatAction != null) iatAction.onFinish();
         }
     };
 
