@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final SubsamplingScaleImageView imageView = findViewById(R.id.dhu_v);
+        final SubsamplingScaleImageView imageView = findViewById(R.id.dhu_view);
 
         dhuView = new DhuView(this, imageView,
                 (ViewGroup) findViewById(R.id.dhu_dialog),

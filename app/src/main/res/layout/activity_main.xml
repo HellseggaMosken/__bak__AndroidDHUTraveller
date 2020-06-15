@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-        android:id="@+id/dhu_v"
+        android:id="@+id/dhu_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
