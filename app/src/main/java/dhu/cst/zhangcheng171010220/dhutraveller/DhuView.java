@@ -3,45 +3,68 @@ package dhu.cst.zhangcheng171010220.dhutraveller;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PointF;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
+import android.view.ViewGroup;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 public class DhuView {
-    Context context;
-    SubsamplingScaleImageView imageView;
-    DhuBuilding[] buildings;
+    private Context context;
+    private SubsamplingScaleImageView imageView;
+    private DhuBuilding[] buildings;
+    private DhuDialog dialog;
 
     @SuppressLint("ClickableViewAccessibility")
-    public DhuView(Context context, SubsamplingScaleImageView imageView) {
+    public DhuView(Context context, SubsamplingScaleImageView imageView, ViewGroup dhuDialogLayout, View dhuDialogBg) {
         this.context = context;
         this.imageView = imageView;
+        this.dialog = new DhuDialog(context, dhuDialogLayout, dhuDialogBg);
         imageView.setImage(ImageSource.resource(R.drawable.dhu_full_abs));
         this.buildings = new DhuBuildingHelper(context).create();
         final GestureDetector gestureDetector = getGestureDetector();
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                if (dialog.isShowing()) {
+                    return true;
+                }
                 return gestureDetector.onTouchEvent(event);
             }
         });
     }
 
+    public DhuBuilding[] getBuildings() { return buildings; }
 
-    public boolean moveToBuilding(DhuBuilding b) {
+
+    public void moveToBuilding(DhuBuilding b) {
         SubsamplingScaleImageView.AnimationBuilder animationBuilder
                 = imageView.animateScaleAndCenter(b.scale, b.getCenter());
-        if (animationBuilder == null) return false;
+        if (animationBuilder == null) {
+            Log.d("__b", "DhuView moveToBuilding() animationBuilder nullptr");
+            return;
+        }
         animationBuilder
                 .withDuration(500)
                 .withEasing(SubsamplingScaleImageView.EASE_IN_OUT_QUAD)
                 .withInterruptible(false)
                 .start();
-        return true;
+    }
+
+    public void showDialog(DhuBuilding b) {
+        dialog.reset(b);
+        dialog.show();
+    }
+
+    public boolean showGallery() {
+        return dialog.showGallery();
+    }
+
+    public boolean showFullView() {
+        return dialog.showFullView();
     }
 
     private GestureDetector getGestureDetector() {
@@ -58,12 +81,11 @@ public class DhuView {
                 PointF pointF = imageView.viewToSourceCoord(x, y);
                 if (pointF == null) return false;
 
-                //Toast.makeText(context, ""+pointF.x + ";" + pointF.y+"  "+imageView.getScale(), Toast.LENGTH_SHORT).show();
-
                 for (DhuBuilding b : buildings) {
                     if (b.isInBuilding(pointF)) {
-                        Toast.makeText(context, b.name + "  "+imageView.getScale(), Toast.LENGTH_SHORT).show();
-                        return moveToBuilding(b);
+                        moveToBuilding(b);
+                        showDialog(b);
+                        return true;
                     }
                 }
                 return false;

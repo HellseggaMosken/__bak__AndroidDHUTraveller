@@ -7,4 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="dhu_dialog_window_anim" parent="android:Animation" >
+        <item name="android:windowEnterAnimation">@anim/dhu_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/dhu_dialog_out</item>
+    </style>
+
 </resources>
