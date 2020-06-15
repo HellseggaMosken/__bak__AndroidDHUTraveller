@@ -2,6 +2,10 @@
     <string name="app_name">东华游</string>
     <string name="text_gallery">图库</string>
     <string name="text_fullView">全景</string>
+    <string name="text_settings">设置</string>
+    <string name="text_help">对话</string>
+    <string name="text_last">上一站</string>
+    <string name="text_next">下一站</string>
     <string name="picture_preview_description">picture preview</string>
     <string name="search_hint">输入你想搜索的地名</string>
 

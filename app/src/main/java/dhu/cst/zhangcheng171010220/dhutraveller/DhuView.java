@@ -40,6 +40,9 @@ public class DhuView {
 
     public DhuBuilding[] getBuildings() { return buildings; }
 
+    public DhuBuilding getShowingBuilding() {
+        return dialog.getShowingBuilding();
+    }
 
     public void moveToBuilding(DhuBuilding b) {
         SubsamplingScaleImageView.AnimationBuilder animationBuilder
@@ -53,6 +56,10 @@ public class DhuView {
                 .withEasing(SubsamplingScaleImageView.EASE_IN_OUT_QUAD)
                 .withInterruptible(false)
                 .start();
+    }
+
+    public void setNavBar(NavBar navBar) {
+        this.dialog.setNavBar(navBar);
     }
 
     public void showDialog(DhuBuilding b) {

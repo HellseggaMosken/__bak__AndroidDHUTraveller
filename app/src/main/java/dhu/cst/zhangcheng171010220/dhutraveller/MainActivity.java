@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     DhuView dhuView;
     SearchBar searchBar;
+    NavBar navBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         searchBar = new SearchBar(MainActivity.this,
                 dhuView, (ViewGroup) findViewById(R.id.search_bar), iatHandler);
+
+        navBar = new NavBar(MainActivity.this,
+                (ViewGroup) findViewById(R.id.nav_bar), dhuView, iatHandler);
     }
 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:rowCount="1"
+    android:layout_column="4"
+    android:elevation="18dp"
+    android:background="@color/colorWhite"
+    >
+    <LinearLayout
+        android:id="@+id/nav_bar_settings"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:layout_columnWeight="1"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:background="?selectableItemBackground"
+        android:paddingVertical="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_settings"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_settings"
+            android:textSize="12sp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/nav_bar_last"
+        android:layout_column="1"
+        android:layout_row="0"
+        android:layout_columnWeight="1"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:background="?selectableItemBackground"
+        android:paddingVertical="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_last_station"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_last"
+            android:textSize="12sp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/nav_bar_next"
+        android:layout_column="2"
+        android:layout_row="0"
+        android:layout_columnWeight="1"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:background="?selectableItemBackground"
+        android:paddingVertical="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_next_station"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_next"
+            android:textSize="12sp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/nav_bar_help"
+        android:layout_column="3"
+        android:layout_row="0"
+        android:layout_columnWeight="1"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:background="?selectableItemBackground"
+        android:paddingVertical="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lightbulb"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_help"
+            android:textSize="12sp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+</GridLayout>

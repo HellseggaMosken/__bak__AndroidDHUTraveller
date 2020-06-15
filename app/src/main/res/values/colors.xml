@@ -6,4 +6,5 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorSearchBar">#626262</color>
+    <color name="colorNavBarIcon">#626262</color>
 </resources>

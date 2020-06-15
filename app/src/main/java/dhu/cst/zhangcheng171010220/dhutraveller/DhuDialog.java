@@ -23,6 +23,7 @@ public class DhuDialog {
     private Animation animationBgNormal;
     private Animation animationBgDark;
 
+    private NavBar navBar;
 
     public DhuDialog(Context context, ViewGroup layout, View backgroundView) {
         this.layout = layout;
@@ -64,8 +65,18 @@ public class DhuDialog {
         return true;
     }
 
+    public void setNavBar(NavBar navBar) {
+        this.navBar = navBar;
+    }
+
     public boolean isShowing() {
         return layout.getVisibility() == View.VISIBLE;
+    }
+
+    public DhuBuilding getShowingBuilding() {
+        if (isShowing())
+            return building;
+        return null;
     }
 
     public void show() {
@@ -74,6 +85,9 @@ public class DhuDialog {
         layout.setVisibility(View.VISIBLE);
         backgroundView.startAnimation(animationBgDark);
         backgroundView.setVisibility(View.VISIBLE);
+        if (navBar != null) {
+            navBar.resetLast();
+        }
     }
 
     public void close() {
@@ -81,6 +95,10 @@ public class DhuDialog {
         layout.setVisibility(View.INVISIBLE);
         backgroundView.startAnimation(animationBgNormal);
         backgroundView.setVisibility(View.INVISIBLE);
+        if (navBar != null) {
+            navBar.disableLast();
+            navBar.resetNext();
+        }
     }
 
     public void reset(DhuBuilding building) {
