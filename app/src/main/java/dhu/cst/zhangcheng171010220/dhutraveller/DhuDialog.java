@@ -1,17 +1,13 @@
 package dhu.cst.zhangcheng171010220.dhutraveller;
 
 import android.content.Context;
-import android.graphics.Outline;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 
 public class DhuDialog {
