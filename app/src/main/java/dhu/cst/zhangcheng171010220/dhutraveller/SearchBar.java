@@ -1,25 +1,29 @@
 package dhu.cst.zhangcheng171010220.dhutraveller;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SearchBar {
     DhuView dhuView;
     SearchView searchView;
     View searchVoice;
+    ViewGroup searchResList;
     IatHandler iatHandler;
-    Context context;
+    Activity activity;
 
-    public SearchBar(Context context, DhuView dhuView, ViewGroup layout, final IatHandler iatHandler) {
-        this.context = context;
+    public SearchBar(Activity activity, DhuView dhuView, ViewGroup layout, final IatHandler iatHandler) {
+        this.activity = activity;
         this.dhuView = dhuView;
         this.searchView = layout.findViewById(R.id.search_bar_view);
         this.iatHandler = iatHandler;
         this.searchVoice = layout.findViewById(R.id.search_bar_voice);
+        this.searchResList = layout.findViewById(R.id.search_bar_list);
         initSearchView();
         initIat();
     }
@@ -30,7 +34,7 @@ public class SearchBar {
             public void onStart() {
                 searchView.setQuery("", false);
                 searchView.setQueryHint("正在聆听...");
-                Toast.makeText(context, "请说出地名", Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, "请说出地名", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -40,8 +44,8 @@ public class SearchBar {
 
             @Override
             public void onFinish() {
-                searchView.setQueryHint(context.getResources().getString(R.string.search_hint));
-                Toast.makeText(context, "语音结束", Toast.LENGTH_SHORT).show();
+                searchView.setQueryHint(activity.getResources().getString(R.string.search_hint));
+                Toast.makeText(activity, "语音结束", Toast.LENGTH_SHORT).show();
             }
         };
         searchVoice.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +55,21 @@ public class SearchBar {
                 iatHandler.startListen();
             }
         });
+    }
+
+    private View makeResItem(final DhuBuilding b) {
+        TextView view = (TextView) activity.getLayoutInflater().inflate(R.layout.search_res_item, null);
+        view.setText(b.name);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.clearFocus();
+                searchView.setQuery("", false);
+                dhuView.moveToBuilding(b);
+                dhuView.showDialog(b);
+            }
+        });
+        return view;
     }
 
     private void initSearchView() {
@@ -70,11 +89,15 @@ public class SearchBar {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.d("__d", "onQueryTextChange   "+newText);
-//                if (newText == null || newText.length() == 0) {
-//                    //
-//                }
-
+                searchResList.removeAllViews();
+                if (newText == null || newText.length() == 0) {
+                    return false;
+                }
+                for (DhuBuilding b : dhuView.getBuildings()) {
+                    if (b.name.contains(newText)) {
+                        searchResList.addView(makeResItem(b));
+                    }
+                }
                 return false;
             }
         });
