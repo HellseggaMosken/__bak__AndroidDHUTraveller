@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/dhu_dialog_details"
+    android:rowCount="1"
+    android:columnCount="2">
+    <LinearLayout
+        android:id="@+id/dhu_dialog_toFullView"
+        android:orientation="vertical"
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingVertical="10sp"
+        android:layout_column="0"
+        android:layout_columnWeight="1" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_eye"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_fullView"
+            android:textSize="12sp"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/dhu_dialog_toGallery"
+        android:orientation="vertical"
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingVertical="10sp"
+        android:layout_column="1"
+        android:layout_columnWeight="1" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_photo"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_gallery"
+            android:textSize="12sp"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+</GridLayout>

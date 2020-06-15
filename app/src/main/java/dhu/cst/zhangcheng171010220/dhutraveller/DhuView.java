@@ -30,6 +30,7 @@ public class DhuView {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (dialog.isShowing()) {
+                    dialog.close();
                     return true;
                 }
                 return gestureDetector.onTouchEvent(event);

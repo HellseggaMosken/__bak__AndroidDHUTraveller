@@ -36,13 +36,15 @@ public class DhuDialog {
         this.animationBgNormal = AnimationUtils.loadAnimation(context, R.anim.dhu_dialog_bg_normal);
         this.animationBgDark = AnimationUtils.loadAnimation(context, R.anim.dhu_dialog_bg_dark);
 
-        ((Button) layout.findViewById(R.id.dhu_dialog_toGallery)).setOnClickListener(new View.OnClickListener() {
+        layout.setOnClickListener(null); // 覆盖其他的点击事件
+
+        ((View) layout.findViewById(R.id.dhu_dialog_toGallery)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickToGallery();
             }
         });
-        ((Button) layout.findViewById(R.id.dhu_dialog_toFullView)).setOnClickListener(new View.OnClickListener() {
+        ((View) layout.findViewById(R.id.dhu_dialog_toFullView)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickToFullView();
@@ -52,12 +54,13 @@ public class DhuDialog {
 
     private boolean onClickToGallery() {
         if (building == null) return false;
-        close();
+        //close();
         return true;
     }
 
     private boolean onClickToFullView() {
         if (building == null) return false;
+        //close();
         return true;
     }
 
