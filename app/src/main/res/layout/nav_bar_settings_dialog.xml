@@ -7,15 +7,17 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/round_corner_bg"
-    android:padding="30dp"
+    android:paddingHorizontal="30dp"
+    android:paddingVertical="15dp"
     >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:textSize="20sp"
         android:textColor="@color/colorBlack"
         android:paddingBottom="20dp"
-        android:text="选择地图的显示风格"
+        android:text="@string/nav_bar_settings_dialog_title"
         />
     <LinearLayout
         android:layout_width="wrap_content"

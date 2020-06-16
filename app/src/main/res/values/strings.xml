@@ -9,6 +9,7 @@
     <string name="text_style_std">标准</string>
     <string name="text_style_real">实景</string>
     <string name="text_style_abs">手绘</string>
+    <string name="nav_bar_settings_dialog_title">选择地图的显示风格</string>
     <string name="picture_preview_description">picture preview</string>
     <string name="search_hint">输入你想搜索的地名</string>
 
@@ -71,6 +72,7 @@
     <string name="dhu_gate_north_msg">北大门</string>
     <string name="dhu_gate_east_msg">东大门</string>
     <string name="dhu_road_dh_msg">东华大道</string>
+
 
 
 </resources>
