@@ -13,9 +13,10 @@ public class DhuBuilding implements Serializable {
     String name;
     String msg;
     int[] pictures;
+    String fullViewLocation;
 
     public DhuBuilding(float leftTopX, float leftTopY, float rightBottomX, float rightBottomY,
-                       float mapScale, String name, String msg, int ...pictureResId) {
+                       float mapScale, String name, String msg, String fullViewLocation, int ...pictureResId) {
         this.leftTopX = leftTopX;
         this.leftTopY = leftTopY;
         this.rightBottomX = rightBottomX;
@@ -23,7 +24,8 @@ public class DhuBuilding implements Serializable {
         this.scale = mapScale;
         this.name = name;
         this.msg = msg;
-        pictures = pictureResId;
+        this.fullViewLocation = fullViewLocation;
+        this.pictures = pictureResId;
     }
 
     public boolean isInBuilding(PointF pointF) {

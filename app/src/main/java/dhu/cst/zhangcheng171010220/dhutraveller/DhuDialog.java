@@ -69,7 +69,11 @@ public class DhuDialog {
 
     private boolean onClickToFullView() {
         if (building == null) return false;
-        //close();
+        Intent intent = new Intent(context, FullViewActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("building", building);
+        intent.putExtras(bundle);
+        ((Activity) context).startActivityForResult(intent, 0);
         return true;
     }
 
