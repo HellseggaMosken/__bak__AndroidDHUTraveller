@@ -61,6 +61,12 @@ public class DhuDialog {
                 onClickToFullView();
             }
         });
+        ((View) layout.findViewById(R.id.dhu_dialog_close)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                close();
+            }
+        });
     }
 
     private boolean onClickToGallery() {
