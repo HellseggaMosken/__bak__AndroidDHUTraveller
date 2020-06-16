@@ -17,13 +17,15 @@ public class DhuView {
     private SubsamplingScaleImageView imageView;
     private DhuBuilding[] buildings;
     private DhuDialog dialog;
+    private int style;
 
     @SuppressLint("ClickableViewAccessibility")
     public DhuView(Context context, SubsamplingScaleImageView imageView, ViewGroup dhuDialogLayout, View dhuDialogBg) {
         this.context = context;
         this.imageView = imageView;
         this.dialog = new DhuDialog(context, dhuDialogLayout, dhuDialogBg);
-        imageView.setImage(ImageSource.resource(R.drawable.dhu_full_abs));
+        this.style = -1;
+        this.changeStyle(0);
         this.buildings = new DhuBuildingHelper(context).create();
         final GestureDetector gestureDetector = getGestureDetector();
         imageView.setOnTouchListener(new View.OnTouchListener() {
@@ -65,6 +67,19 @@ public class DhuView {
     public void showDialog(DhuBuilding b) {
         dialog.reset(b);
         dialog.show();
+    }
+
+    public void closeDialog() {
+        if (dialog.isShowing())
+            dialog.close();
+    }
+
+    public void changeStyle(int s) {
+        if (s == style) return;
+        if (s >=0 && s <= 2) style = s;
+        if (s == 0) imageView.setImage(ImageSource.resource(R.drawable.dhu_full_abs));
+        else if (s == 1) imageView.setImage(ImageSource.resource(R.drawable.preview_style_real));
+        else if (s == 2) imageView.setImage(ImageSource.resource(R.drawable.dhu_full_abs));
     }
 
     public boolean showGallery() {

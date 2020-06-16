@@ -13,5 +13,12 @@
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
     </style>
 
+    <!-- 底部弹出动画 -->
+    <style name="DialogPop" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_out</item>
+    </style>
+
+
 
 </resources>

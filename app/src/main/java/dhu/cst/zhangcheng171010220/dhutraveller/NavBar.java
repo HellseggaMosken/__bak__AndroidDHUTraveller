@@ -1,9 +1,15 @@
 package dhu.cst.zhangcheng171010220.dhutraveller;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 public class NavBar {
     Context context;
@@ -48,7 +54,58 @@ public class NavBar {
     }
 
     private void initSettings() {
+        View view = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.nav_bar_settings_dialog, null);
+        final RadioButton rStd = view.findViewById(R.id.radio_style_std);
+        final RadioButton rReal = view.findViewById(R.id.radio_style_real);
+        final RadioButton rAbs = view.findViewById(R.id.radio_style_abs);
 
+        rStd.setChecked(true);
+
+        rStd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dhuView.changeStyle(0);
+                rStd.setChecked(true);
+                rReal.setChecked(false);
+                rAbs.setChecked(false);
+            }
+        });
+
+        rReal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dhuView.changeStyle(1);
+                rReal.setChecked(true);
+                rStd.setChecked(false);
+                rAbs.setChecked(false);
+            }
+        });
+
+        rAbs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dhuView.changeStyle(2);
+                rAbs.setChecked(true);
+                rReal.setChecked(false);
+                rStd.setChecked(false);
+            }
+        });
+
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(view);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.getWindow().setWindowAnimations(R.style.DialogPop);
+        navIconSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                } else {
+                    dhuView.closeDialog();
+                    dialog.show();
+                }
+            }
+        });
     }
 
     private int findNextBuildingIndex(DhuBuilding b) {
