@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class DhuDialog {
@@ -20,6 +21,9 @@ public class DhuDialog {
     private TextView textViewDetails;
     private ImageView imageViewCover;
     private View backgroundView;
+
+    private View viewToGallery;
+    private View viewToFullView;
 
     private Animation animationShow;
     private Animation animationClose;
@@ -35,6 +39,8 @@ public class DhuDialog {
         this.textViewTitle = layout.findViewById(R.id.dhu_dialog_title);
         this.imageViewCover = layout.findViewById(R.id.dhu_dialog_cover);
         this.backgroundView = backgroundView;
+        this.viewToGallery = layout.findViewById(R.id.dhu_dialog_toGallery);
+        this.viewToFullView = layout.findViewById(R.id.dhu_dialog_toFullView);
 
         this.animationShow = AnimationUtils.loadAnimation(context, R.anim.dhu_dialog_in);
         this.animationClose = AnimationUtils.loadAnimation(context, R.anim.dhu_dialog_out);
@@ -43,13 +49,13 @@ public class DhuDialog {
 
         layout.setOnClickListener(null); // 覆盖其他的点击事件
 
-        ((View) layout.findViewById(R.id.dhu_dialog_toGallery)).setOnClickListener(new View.OnClickListener() {
+        viewToGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickToGallery();
             }
         });
-        ((View) layout.findViewById(R.id.dhu_dialog_toFullView)).setOnClickListener(new View.OnClickListener() {
+        viewToFullView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickToFullView();
@@ -59,6 +65,10 @@ public class DhuDialog {
 
     private boolean onClickToGallery() {
         if (building == null) return false;
+        if (building.pictures == null || building.pictures.length == 0) {
+            Toast.makeText(context, "该地区暂无图片!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         Intent intent = new Intent(context, GalleryActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("building", building);
@@ -69,6 +79,10 @@ public class DhuDialog {
 
     private boolean onClickToFullView() {
         if (building == null) return false;
+        if (building.fullViewLocation == null) {
+            Toast.makeText(context, "该地区暂无全景图!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         Intent intent = new Intent(context, FullViewActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("building", building);
@@ -118,9 +132,22 @@ public class DhuDialog {
             this.close();
         }
         this.building = building;
-        imageViewCover.setImageResource(building.pictures[0]);
+        if (building == null) return;
+        if (building.fullViewLocation == null) {
+            this.viewToFullView.setAlpha(0.3f);
+        } else {
+            this.viewToFullView.setAlpha(1);
+        }
+        if (building.pictures == null || building.pictures.length == 0) {
+            this.viewToGallery.setAlpha(0.3f);
+            imageViewCover.setImageResource(R.drawable.dhu_full_real);
+        } else {
+            this.viewToGallery.setAlpha(1);
+            imageViewCover.setImageResource(building.pictures[0]);
+        }
         textViewTitle.setText(building.name);
         textViewDetails.setText(building.msg);
+
     }
 
     public boolean showGallery() {
