@@ -6,7 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".GalleryActivity">
 
+    <LinearLayout
+        android:id="@+id/activity_gallery_tempId_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="17dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/activity_gallery_head_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:drawableStart="@drawable/ic_back"
+            android:clickable="true"
+            android:background="?android:selectableItemBackgroundBorderless"
+            />
+        <TextView
+            android:id="@+id/activity_gallery_head_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="22sp"
+            android:textColor="@color/colorWhite"
+            />
+
+    </LinearLayout>
+
     <androidx.viewpager2.widget.ViewPager2
+        android:layout_below="@id/activity_gallery_tempId_1"
         android:id="@+id/gallery_viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
