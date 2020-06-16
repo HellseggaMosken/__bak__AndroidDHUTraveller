@@ -57,7 +57,7 @@ public class DhuBuildingHelper {
                 new DhuBuilding(316, 1256, 546, 1331, 2.0f,
                         resToStr(R.string.dhu_teacher_house), resToStr(R.string.dhu_teacher_house_msg), R.drawable.dhu_full_abs),
                 new DhuBuilding(1234, 967, 1502, 1218, 1.0f,
-                        resToStr(R.string.dhu_lake), resToStr(R.string.dhu_lake_msg), R.drawable.dhu_full_abs),
+                        resToStr(R.string.dhu_lake), resToStr(R.string.dhu_lake_msg), R.drawable.dhu_full_abs, R.drawable.dhu_full_real),
                 new DhuBuilding(1335, 1404, 1362, 1461, 2.6f,
                         resToStr(R.string.dhu_bridge_j), resToStr(R.string.dhu_bridge_j_msg), R.drawable.dhu_full_abs),
                 new DhuBuilding(1123, 716, 1249, 793, 1.5f,

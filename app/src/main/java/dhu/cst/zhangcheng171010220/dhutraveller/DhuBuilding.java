@@ -2,7 +2,9 @@ package dhu.cst.zhangcheng171010220.dhutraveller;
 
 import android.graphics.PointF;
 
-public class DhuBuilding {
+import java.io.Serializable;
+
+public class DhuBuilding implements Serializable {
     float leftTopX;
     float leftTopY;
     float rightBottomX;

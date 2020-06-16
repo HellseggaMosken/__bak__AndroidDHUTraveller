@@ -1,16 +1,19 @@
 package dhu.cst.zhangcheng171010220.dhutraveller;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 public class DhuDialog {
+    private Context context;
     private ViewGroup layout;
     private DhuBuilding building;
     private TextView textViewTitle;
@@ -26,6 +29,7 @@ public class DhuDialog {
     private NavBar navBar;
 
     public DhuDialog(Context context, ViewGroup layout, View backgroundView) {
+        this.context = context;
         this.layout = layout;
         this.textViewDetails = layout.findViewById(R.id.dhu_dialog_details);
         this.textViewTitle = layout.findViewById(R.id.dhu_dialog_title);
@@ -55,7 +59,11 @@ public class DhuDialog {
 
     private boolean onClickToGallery() {
         if (building == null) return false;
-        //close();
+        Intent intent = new Intent(context, GalleryActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("building", building);
+        intent.putExtras(bundle);
+        ((Activity) context).startActivityForResult(intent, 0);
         return true;
     }
 
