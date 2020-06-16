@@ -19,32 +19,33 @@
         />
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="25dp"
-            >
+            android:paddingEnd="25dp">
             <RadioButton
-                android:id="@+id/radio_style_std"
+                android:id="@+id/radio_style_abs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_style_std"
+                android:text="@string/text_style_abs"
                 android:textSize="18sp"
                 />
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/preview_style_std"
+                android:src="@drawable/preview_style_abs"
                 />
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="25dp">
+            android:paddingEnd="25dp"
+            >
             <RadioButton
                 android:id="@+id/radio_style_real"
                 android:layout_width="wrap_content"
@@ -59,22 +60,24 @@
                 android:src="@drawable/preview_style_real"
                 />
         </LinearLayout>
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
             <RadioButton
-                android:id="@+id/radio_style_abs"
+                android:id="@+id/radio_style_std"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_style_abs"
+                android:text="@string/text_style_std"
                 android:textSize="18sp"
                 />
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/preview_style_abs"
+                android:src="@drawable/preview_style_std"
                 />
         </LinearLayout>
     </LinearLayout>

@@ -77,9 +77,10 @@ public class DhuView {
     public void changeStyle(int s) {
         if (s == style) return;
         if (s >=0 && s <= 2) style = s;
+        else return;
         if (s == 0) imageView.setImage(ImageSource.resource(R.drawable.dhu_full_abs));
-        else if (s == 1) imageView.setImage(ImageSource.resource(R.drawable.preview_style_real));
-        else if (s == 2) imageView.setImage(ImageSource.resource(R.drawable.dhu_full_abs));
+        else if (s == 1) imageView.setImage(ImageSource.resource(R.drawable.dhu_full_real));
+        else imageView.setImage(ImageSource.resource(R.drawable.dhu_full_std));
     }
 
     public boolean showGallery() {

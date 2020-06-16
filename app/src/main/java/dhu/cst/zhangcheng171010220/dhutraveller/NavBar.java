@@ -59,15 +59,15 @@ public class NavBar {
         final RadioButton rReal = view.findViewById(R.id.radio_style_real);
         final RadioButton rAbs = view.findViewById(R.id.radio_style_abs);
 
-        rStd.setChecked(true);
+        rAbs.setChecked(true);
 
-        rStd.setOnClickListener(new View.OnClickListener() {
+        rAbs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dhuView.changeStyle(0);
-                rStd.setChecked(true);
+                rAbs.setChecked(true);
                 rReal.setChecked(false);
-                rAbs.setChecked(false);
+                rStd.setChecked(false);
             }
         });
 
@@ -81,13 +81,13 @@ public class NavBar {
             }
         });
 
-        rAbs.setOnClickListener(new View.OnClickListener() {
+        rStd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dhuView.changeStyle(2);
-                rAbs.setChecked(true);
+                rStd.setChecked(true);
                 rReal.setChecked(false);
-                rStd.setChecked(false);
+                rAbs.setChecked(false);
             }
         });
 
