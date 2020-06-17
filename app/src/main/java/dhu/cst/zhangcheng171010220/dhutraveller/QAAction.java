@@ -71,8 +71,9 @@ public class QAAction implements IatAction {
         buttonAgainDivider.setVisibility(View.VISIBLE);
         if (stringBuffer == null) {
             textViewRes.setText("您好像未说话，请尝试再次对话。");
+        } else {
+            handleRes(textViewRes, stringBuffer.toString());
         }
-        handleRes(textViewRes, stringBuffer.toString());
     }
 
     private void handleRes(TextView resView, String iatRes) {
