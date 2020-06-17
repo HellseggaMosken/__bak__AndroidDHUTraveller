@@ -3,6 +3,7 @@ package dhu.cst.zhangcheng171010220.dhutraveller;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,11 +90,43 @@ public class DhuDialog {
             Toast.makeText(context, "该地区暂无全景图!", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        if (!getPermission()) {
+            Toast.makeText(context, "权限获取失败，请允许权限再试！", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         Intent intent = new Intent(context, FullViewActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("building", building);
         intent.putExtras(bundle);
         ((Activity) context).startActivityForResult(intent, 0);
+        return true;
+    }
+
+
+    // 动态获取权限
+    private boolean getPermission() {
+        String[] permissions = new String[] {
+                "android.permission.INTERNET",
+                "android.permission.ACCESS_WIFI_STATE",
+                "android.permission.ACCESS_NETWORK_STATE",
+                "android.permission.WRITE_EXTERNAL_STORAGE",
+                "android.permission.READ_EXTERNAL_STORAGE"
+        };
+        for (String p : permissions) {
+            int status = ((Activity) context).checkSelfPermission(p);
+            if (status != PackageManager.PERMISSION_GRANTED) {
+                ((Activity) context).requestPermissions(permissions, 1);
+                break;
+            }
+        }
+        for (String permission : permissions) {
+            int status = ((Activity) context).checkSelfPermission(permission);
+            if (status != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
         return true;
     }
 

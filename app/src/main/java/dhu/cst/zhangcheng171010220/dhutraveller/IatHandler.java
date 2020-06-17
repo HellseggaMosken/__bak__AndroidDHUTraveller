@@ -117,6 +117,7 @@ public class IatHandler {
         String[] permissions = new String[] {
                 "android.permission.RECORD_AUDIO",
                 "android.permission.INTERNET",
+                "android.permission.ACCESS_WIFI_STATE",
                 "android.permission.ACCESS_NETWORK_STATE",
                 "android.permission.WRITE_EXTERNAL_STORAGE",
                 "android.permission.READ_EXTERNAL_STORAGE"
