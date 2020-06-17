@@ -1,6 +1,7 @@
 package dhu.cst.zhangcheng171010220.dhutraveller;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -138,6 +139,18 @@ public class QAAction implements IatAction {
             }
             return;
         }
+        if (iatRes.startsWith("朗读")) {
+            DhuBuilding b = dhuView.fuzzySearch(iatRes);
+            if (b == null) {
+                resView.setText("未找到" + iatRes.substring(2));
+                return;
+            }
+            qaDialog.close();
+            dhuView.moveToBuilding(b);
+            dhuView.showDialog(b);
+            dhuView.speakDetails();
+            return;
+        }
         if (iatRes.startsWith("打开") || iatRes.startsWith("显示")
                 || iatRes.startsWith("查看") || iatRes.startsWith("游览") || iatRes.startsWith("浏览")) {
             DhuBuilding b = dhuView.fuzzySearch(iatRes);
@@ -148,6 +161,10 @@ public class QAAction implements IatAction {
             qaDialog.close();
             dhuView.moveToBuilding(b);
             dhuView.showDialog(b);
+            if (iatRes.contains("朗读") || iatRes.contains("简介") || iatRes.contains("详情")) {
+                dhuView.speakDetails();
+                return;
+            }
             if (iatRes.contains("图库") || iatRes.contains("图片")) {
                 dhuView.showGallery();
                 return;

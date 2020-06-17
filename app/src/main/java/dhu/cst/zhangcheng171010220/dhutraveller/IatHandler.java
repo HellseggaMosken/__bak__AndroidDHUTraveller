@@ -63,8 +63,10 @@ public class IatHandler {
     }
 
     public void cancel() {
-        if (mIat.isListening())
+        if (mIat.isListening()) {
             mIat.stopListening();
+            mIat.cancel();
+        }
     }
 
     // 设置语音识别对话框参数

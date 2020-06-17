@@ -33,7 +33,9 @@ public class DhuDialog {
 
     private NavBar navBar;
 
-    public DhuDialog(Context context, ViewGroup layout, View backgroundView) {
+    private TtsHandler ttsHandler;
+
+    public DhuDialog(Context context, ViewGroup layout, View backgroundView, final TtsHandler ttsHandler) {
         this.context = context;
         this.layout = layout;
         this.textViewDetails = layout.findViewById(R.id.dhu_dialog_details);
@@ -42,6 +44,7 @@ public class DhuDialog {
         this.backgroundView = backgroundView;
         this.viewToGallery = layout.findViewById(R.id.dhu_dialog_toGallery);
         this.viewToFullView = layout.findViewById(R.id.dhu_dialog_toFullView);
+        this.ttsHandler = ttsHandler;
 
         this.animationShow = AnimationUtils.loadAnimation(context, R.anim.dhu_dialog_in);
         this.animationClose = AnimationUtils.loadAnimation(context, R.anim.dhu_dialog_out);
@@ -62,12 +65,20 @@ public class DhuDialog {
                 onClickToFullView();
             }
         });
-        ((View) layout.findViewById(R.id.dhu_dialog_close)).setOnClickListener(new View.OnClickListener() {
+        ((View) layout.findViewById(R.id.dhu_dialog_speak)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                close();
+                speakDetails();
             }
         });
+    }
+
+    public boolean speakDetails() {
+        if (isShowing()) {
+            ttsHandler.speak(building.msg);
+            return true;
+        }
+        return false;
     }
 
     private boolean onClickToGallery() {

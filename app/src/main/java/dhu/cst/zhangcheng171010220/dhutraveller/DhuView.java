@@ -18,16 +18,14 @@ public class DhuView {
     private DhuBuilding[] buildings;
     private DhuDialog dialog;
     private int style;
-    private TtsHandler ttsHandler;
 
     @SuppressLint("ClickableViewAccessibility")
     public DhuView(Context context, SubsamplingScaleImageView imageView,
                    ViewGroup dhuDialogLayout, View dhuDialogBg, TtsHandler ttsHandler) {
         this.context = context;
         this.imageView = imageView;
-        this.dialog = new DhuDialog(context, dhuDialogLayout, dhuDialogBg);
+        this.dialog = new DhuDialog(context, dhuDialogLayout, dhuDialogBg, ttsHandler);
         this.style = -1;
-        this.ttsHandler = ttsHandler;
         this.changeStyle(0);
         this.buildings = new DhuBuildingHelper(context).create();
         final GestureDetector gestureDetector = getGestureDetector();
@@ -47,6 +45,10 @@ public class DhuView {
 
     public DhuBuilding getShowingBuilding() {
         return dialog.getShowingBuilding();
+    }
+
+    public boolean speakDetails() {
+        return dialog.speakDetails();
     }
 
     public boolean moveToBuilding(String name) {

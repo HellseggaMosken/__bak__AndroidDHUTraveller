@@ -87,6 +87,14 @@ public class QADialog {
                 ttsHandler.stopSpeaking();
             }
         });
+
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                iatHandler.cancel();
+                ttsHandler.stopSpeaking();
+            }
+        });
     }
 
     public boolean isShowing() {

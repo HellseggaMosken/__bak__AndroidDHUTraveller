@@ -6,7 +6,7 @@
     android:rowCount="1"
     android:columnCount="3">
     <LinearLayout
-        android:id="@+id/dhu_dialog_close"
+        android:id="@+id/dhu_dialog_speak"
         android:orientation="vertical"
         android:background="?android:attr/selectableItemBackground"
         android:paddingVertical="10sp"
@@ -16,14 +16,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_cancel"
+            android:drawableStart="@drawable/ic_speak"
             android:layout_gravity="center_horizontal"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_close"
+            android:text="@string/text_speak"
             android:textSize="12sp"
             android:layout_gravity="center_horizontal" />
 
