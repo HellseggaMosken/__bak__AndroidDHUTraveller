@@ -45,6 +45,11 @@ public class IatHandler {
 
     public void setIatAction(IatAction iatAction) {
         this.iatAction = iatAction;
+        if (iatAction.blockTimeAfterSpeak() != null) {
+            mIat.setParameter(SpeechConstant.VAD_EOS, iatAction.blockTimeAfterSpeak());
+        } else {
+            mIat.setParameter(SpeechConstant.VAD_EOS, "1000");
+        }
     }
 
     public boolean startListen() {

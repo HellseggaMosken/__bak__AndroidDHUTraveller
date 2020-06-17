@@ -17,8 +17,10 @@ public class NavBar {
     View navIconSettings;
     View navIconLast;
     View navIconNext;
-    View navIconHelp;
+    View navIconQA;
     IatHandler iatHandler;
+    QADialog qaDialog;
+
     public NavBar(Context context, ViewGroup navBarLayout, DhuView dhuView, IatHandler iatHandler) {
         this.context = context;
         this.iatHandler = iatHandler;
@@ -26,11 +28,11 @@ public class NavBar {
         this.navIconSettings = navBarLayout.findViewById(R.id.nav_bar_settings);
         this.navIconLast = navBarLayout.findViewById(R.id.nav_bar_last);
         this.navIconNext = navBarLayout.findViewById(R.id.nav_bar_next);
-        this.navIconHelp = navBarLayout.findViewById(R.id.nav_bar_help);
+        this.navIconQA = navBarLayout.findViewById(R.id.nav_bar_qa);
         navBarLayout.setOnClickListener(null); // 覆盖其他的点击事件
         initSettings();
         initLastAndNext();
-        initHelp();
+        initQA();
     }
 
     public void resetLast() {
@@ -168,8 +170,16 @@ public class NavBar {
         disableLast();
     }
 
-    private void initHelp() {
-
+    private void initQA() {
+        ViewGroup view = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.nav_bar_qa_dialog, null);
+        qaDialog = new QADialog(context, view, dhuView, this, iatHandler);
+        navIconQA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (qaDialog.isShowing()) qaDialog.close();
+                else qaDialog.show();
+            }
+        });
     }
 
 }

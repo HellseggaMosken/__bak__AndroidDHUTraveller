@@ -30,6 +30,11 @@ public class SearchBar {
     private void initIat() {
         final IatAction iatAction = new IatAction() {
             @Override
+            public String blockTimeAfterSpeak() {
+                return "1500"; // 1.5 second
+            }
+
+            @Override
             public void onStart() {
                 searchView.setQuery("", false);
                 searchView.setQueryHint("正在聆听...");
