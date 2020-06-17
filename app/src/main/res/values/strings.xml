@@ -5,6 +5,7 @@
     <string name="text_close">关闭</string>
     <string name="text_settings">地图风格</string>
     <string name="text_qa">对话</string>
+    <string name="text_listening">正在聆听...</string>
     <string name="text_qa_again">继续对话</string>
     <string name="text_last">上一站</string>
     <string name="text_next">下一站</string>

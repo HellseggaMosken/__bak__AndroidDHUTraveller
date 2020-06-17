@@ -19,6 +19,8 @@
         <item name="android:windowExitAnimation">@anim/pop_out</item>
     </style>
 
+    <dimen name="dialog_horizontal_margin">20dp</dimen>
+
 
 
 </resources>

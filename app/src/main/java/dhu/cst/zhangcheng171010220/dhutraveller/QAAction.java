@@ -2,7 +2,6 @@ package dhu.cst.zhangcheng171010220.dhutraveller;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -11,22 +10,27 @@ public class QAAction implements IatAction {
     private Context context;
     private DhuView dhuView;
     private NavBar navBar;
-    private TextView textViewTitle;
     private TextView textViewRes;
-    private Button buttonAgain;
+    private TextView textViewSpeaking;
+    private View buttonAgain;
+    private View buttonAgainDivider;
     private ProgressBar progressBar;
+    private TextView progressBarHint;
 
     private StringBuffer stringBuffer;
 
-    public QAAction(Context context, DhuView dhuView, NavBar navBar, TextView textViewTitle,
-                    TextView textViewRes, ProgressBar progressBar, Button buttonAgain) {
+    public QAAction(Context context, DhuView dhuView, NavBar navBar,
+                    TextView textViewRes, ProgressBar progressBar, TextView progressBarHint,
+                    View buttonAgain, View buttonAgainDivider, TextView textViewSpeaking) {
         this.context = context;
         this.dhuView = dhuView;
         this.navBar = navBar;
-        this.textViewTitle = textViewTitle;
         this.textViewRes = textViewRes;
+        this.textViewSpeaking = textViewSpeaking;
         this.progressBar = progressBar;
+        this.progressBarHint = progressBarHint;
         this.buttonAgain = buttonAgain;
+        this.buttonAgainDivider = buttonAgainDivider;
     }
 
     @Override
@@ -37,23 +41,32 @@ public class QAAction implements IatAction {
     @Override
     public void onStart() {
         this.stringBuffer = null;
-        textViewTitle.setText("正在聆听...");
+        textViewSpeaking.setText(null);
+        textViewRes.setText(null);
         progressBar.setVisibility(View.VISIBLE);
+        progressBarHint.setVisibility(View.VISIBLE);
         buttonAgain.setVisibility(View.INVISIBLE);
+        buttonAgainDivider.setVisibility(View.INVISIBLE);
         textViewRes.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onResult(StringBuffer buffer) {
         this.stringBuffer = buffer;
+        textViewSpeaking.setText(buffer);
     }
 
     @Override
     public void onFinish() {
-        textViewTitle.setText("结果");
         progressBar.setVisibility(View.INVISIBLE);
+        progressBarHint.setVisibility(View.INVISIBLE);
         textViewRes.setVisibility(View.VISIBLE);
         buttonAgain.setVisibility(View.VISIBLE);
-        textViewRes.setText(stringBuffer);
+        buttonAgainDivider.setVisibility(View.VISIBLE);
+        handleRes(textViewRes, stringBuffer);
+    }
+
+    private void handleRes(TextView resView, StringBuffer iatRes) {
+
     }
 }
