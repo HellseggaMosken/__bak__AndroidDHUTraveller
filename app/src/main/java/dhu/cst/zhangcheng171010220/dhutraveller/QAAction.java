@@ -92,6 +92,21 @@ public class QAAction implements IatAction {
             ttsHandler.speak(context.getResources().getString(R.string.dhu_details));
             return;
         }
+        if (iatRes.contains("东华") && iatRes.contains("人数")) {
+            resView.setText("三万人左右");
+            ttsHandler.speak("三万人左右");
+            return;
+        }
+        if (iatRes.contains("东华") && (iatRes.contains("位置") || iatRes.contains("校区"))) {
+            resView.setText("松江校区，位于上海市松江区；延安路校区和新华路校区，位于上海市长宁区。");
+            ttsHandler.speak("松江校区，位于上海市松江区；延安路校区和新华路校区，位于上海市长宁区。");
+            return;
+        }
+        if (iatRes.contains("东华") && iatRes.contains("面积")) {
+            resView.setText("面积2000亩，建筑面积78万余平方米。");
+            ttsHandler.speak("面积2000亩，建筑面积78万余平方米。");
+            return;
+        }
         if (iatRes.contains("下一")) {
             if (navBar.nextBuilding(false)) {
                 qaDialog.close();
