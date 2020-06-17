@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ public class SearchBar {
     DhuView dhuView;
     SearchView searchView;
     View searchVoice;
+    ProgressBar searchVoiceProgressBar;
     ViewGroup searchResList;
     IatHandler iatHandler;
     Activity activity;
@@ -23,6 +25,8 @@ public class SearchBar {
         this.iatHandler = iatHandler;
         this.searchVoice = layout.findViewById(R.id.search_bar_voice);
         this.searchResList = layout.findViewById(R.id.search_bar_list);
+        this.searchVoiceProgressBar = layout.findViewById(R.id.search_bar_voice_progressBar);
+        layout.setOnClickListener(null);
         initSearchView();
         initIat();
     }
@@ -38,7 +42,9 @@ public class SearchBar {
             public void onStart() {
                 searchView.setQuery("", false);
                 searchView.setQueryHint("正在聆听...");
-                Toast.makeText(activity, "请说出地名", Toast.LENGTH_LONG).show();
+                searchVoice.setVisibility(View.INVISIBLE);
+                searchVoiceProgressBar.setVisibility(View.VISIBLE);
+                Toast.makeText(activity, "请说出地名", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -49,7 +55,9 @@ public class SearchBar {
             @Override
             public void onFinish() {
                 searchView.setQueryHint(activity.getResources().getString(R.string.search_hint));
-                Toast.makeText(activity, "语音结束", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activity, "语音结束", Toast.LENGTH_SHORT).show();
+                searchVoiceProgressBar.setVisibility(View.INVISIBLE);
+                searchVoice.setVisibility(View.VISIBLE);
             }
         };
         searchVoice.setOnClickListener(new View.OnClickListener() {

@@ -40,6 +40,16 @@
                 android:paddingEnd="15dp"
                 android:paddingStart="2dp"
                 />
+
+            <ProgressBar
+                android:id="@+id/search_bar_voice_progressBar"
+                style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:paddingStart="2dp"
+                android:paddingEnd="10dp"
+                android:visibility="invisible" />
         </RelativeLayout>
         <LinearLayout
             android:id="@+id/search_bar_list"
