@@ -16,6 +16,9 @@
     <string name="picture_preview_description">picture preview</string>
     <string name="search_hint">输入你想搜索的地名</string>
 
+    <string name="dhu_details">东华大学，位于上海市，是中华人民共和国教育部直属的全国重点大学，是国家“世界一流学科建设高校”、“211工程“建设高校。学校设有18个学院，本科专业55个，学科涉及工学、理学等十大学科门类，有各类学生近3万人。</string>
+    <string name="dhu_motto">崇德博学，砺志尚实。</string>
+
     <string name="dhu_department_1">1号学院楼</string>
     <string name="dhu_department_2">2号学院楼</string>
     <string name="dhu_department_3">3号学院楼</string>

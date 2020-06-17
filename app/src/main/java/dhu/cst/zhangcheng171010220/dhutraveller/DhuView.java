@@ -46,6 +46,16 @@ public class DhuView {
         return dialog.getShowingBuilding();
     }
 
+    public boolean moveToBuilding(String name) {
+        for (DhuBuilding b : buildings) {
+            if (b.name.equals(name)) {
+                moveToBuilding(b);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void moveToBuilding(DhuBuilding b) {
         SubsamplingScaleImageView.AnimationBuilder animationBuilder
                 = imageView.animateScaleAndCenter(b.scale, b.getCenter());
@@ -83,6 +93,40 @@ public class DhuView {
         else imageView.setImage(ImageSource.resource(R.drawable.dhu_full_std));
     }
 
+    public DhuBuilding fuzzySearch(String str) {
+        if (str.contains("教学楼")) {
+            if (str.contains("1") || str.contains("一")) return accurateSearch("第1教学楼");
+            if (str.contains("2") || str.contains("二")) return accurateSearch("第2教学楼");
+        } else if (str.contains("学院楼")) {
+            if (str.contains("1") || str.contains("一")) return accurateSearch("1号学院楼");
+            if (str.contains("2") || str.contains("二")) return accurateSearch("2号学院楼");
+            if (str.contains("3") || str.contains("三")) return accurateSearch("3号学院楼");
+            if (str.contains("4") || str.contains("四")) return accurateSearch("4号学院楼");
+            if (str.contains("5") || str.contains("五")) return accurateSearch("5号学院楼");
+        } else if (str.contains("食堂")) {
+            if (str.contains("1") || str.contains("一")) return accurateSearch("1食堂");
+            if (str.contains("2") || str.contains("二")) return accurateSearch("2食堂");
+        } else if (str.contains("实验楼")) {
+            return accurateSearch("综合实验楼");
+        } else if (str.contains("宿舍")) {
+            return accurateSearch("宿舍区");
+        } else if (str.contains("东门")) {
+            return accurateSearch("东大门");
+        }else if (str.contains("北门")) {
+            return accurateSearch("北大门");
+        }
+        return null;
+    }
+
+    public DhuBuilding accurateSearch(String str) {
+        for (DhuBuilding b: buildings) {
+            if (b.name.equals(str)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
     public boolean showGallery() {
         return dialog.showGallery();
     }
@@ -90,6 +134,11 @@ public class DhuView {
     public boolean showFullView() {
         return dialog.showFullView();
     }
+
+    public boolean isShowingBuilding() {
+        return dialog.isShowing();
+    }
+
 
     private GestureDetector getGestureDetector() {
         return new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {

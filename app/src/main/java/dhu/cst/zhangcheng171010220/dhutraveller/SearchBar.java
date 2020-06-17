@@ -9,6 +9,8 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 public class SearchBar {
     DhuView dhuView;
     SearchView searchView;
@@ -18,6 +20,8 @@ public class SearchBar {
     IatHandler iatHandler;
     Activity activity;
 
+    private HashMap<DhuBuilding, Boolean> searchMap;
+
     public SearchBar(Activity activity, DhuView dhuView, ViewGroup layout, final IatHandler iatHandler) {
         this.activity = activity;
         this.dhuView = dhuView;
@@ -26,6 +30,7 @@ public class SearchBar {
         this.searchVoice = layout.findViewById(R.id.search_bar_voice);
         this.searchResList = layout.findViewById(R.id.search_bar_list);
         this.searchVoiceProgressBar = layout.findViewById(R.id.search_bar_voice_progressBar);
+        this.searchMap = new HashMap<>(dhuView.getBuildings().length);
         layout.setOnClickListener(null);
         initSearchView();
         initIat();
@@ -69,6 +74,10 @@ public class SearchBar {
         });
     }
 
+    public void setSearchStr(String str) {
+        this.searchView.setQuery(str, false);
+    }
+
     private View makeResItem(final DhuBuilding b) {
         TextView view = (TextView) activity.getLayoutInflater().inflate(R.layout.search_res_item, null);
         view.setText(b.name);
@@ -102,12 +111,21 @@ public class SearchBar {
             @Override
             public boolean onQueryTextChange(String newText) {
                 searchResList.removeAllViews();
+                searchMap.clear();
                 if (newText == null || newText.length() == 0) {
                     return false;
                 }
                 for (DhuBuilding b : dhuView.getBuildings()) {
                     if (b.name.contains(newText)) {
                         searchResList.addView(makeResItem(b));
+                        searchMap.put(b, true);
+                    }
+                }
+                DhuBuilding building = dhuView.fuzzySearch(newText);
+                if (building != null) {
+                    if (!searchMap.containsKey(building)) {
+                        searchResList.addView(makeResItem(building));
+                        searchMap.put(building, true);
                     }
                 }
                 return false;

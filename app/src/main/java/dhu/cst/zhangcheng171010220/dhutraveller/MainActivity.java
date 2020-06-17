@@ -34,6 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 dhuView, (ViewGroup) findViewById(R.id.search_bar), iatHandler);
 
         navBar = new NavBar(MainActivity.this,
-                (ViewGroup) findViewById(R.id.nav_bar), dhuView, iatHandler);
+                (ViewGroup) findViewById(R.id.nav_bar), dhuView, searchBar, iatHandler);
     }
 }

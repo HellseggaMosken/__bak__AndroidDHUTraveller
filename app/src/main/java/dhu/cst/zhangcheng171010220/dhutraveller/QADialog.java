@@ -4,16 +4,12 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.util.Objects;
-
 
 public class QADialog {
     private Context context;
@@ -32,13 +28,15 @@ public class QADialog {
 
 
     public QADialog(Context context, ViewGroup layout,
-                    DhuView dhuView, NavBar navBar, IatHandler iatHandler) {
+                    DhuView dhuView, NavBar navBar,
+                    SearchBar searchBar,
+                    IatHandler iatHandler) {
         this.context = context;
         this.iatHandler = iatHandler;
         this.layout = layout;
         initLayout(layout);
         initDialog(layout);
-        this.qaAction = new QAAction(context, dhuView, navBar,
+        this.qaAction = new QAAction(context, dhuView, navBar, this, searchBar,
                 textViewRes, progressBar, progressBarHint, buttonAgain, buttonAgainDivider,
                 textViewSpeaking);
     }
