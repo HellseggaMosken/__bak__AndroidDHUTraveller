@@ -31,7 +31,7 @@ public class IatHandler {
             public void onInit(int code) {
                 if (code != ErrorCode.SUCCESS) {
                     showTip("语音系统初始化错误，请稍后再试");
-                    Log.d("__xf", "初始化失败，错误码：" + code);
+                    Log.d("__d", "初始化失败，错误码：" + code);
                 }
             }
         };
@@ -62,6 +62,11 @@ public class IatHandler {
         return true;
     }
 
+    public void cancel() {
+        if (mIat.isListening())
+            mIat.stopListening();
+    }
+
     // 设置语音识别对话框参数
     private void setIatParams() {
         //设置语法ID和 SUBJECT 为空，以免因之前有语法调用而设置了此参数
@@ -87,7 +92,9 @@ public class IatHandler {
         @Override
         public void onVolumeChanged(int i, byte[] bytes) { }
         @Override
-        public void onEvent(int i, int i1, int i2, Bundle bundle) { }
+        public void onEvent(int i, int i1, int i2, Bundle bundle) {
+            //Log.d("__d", "iat event" + " " + i);
+        }
 
         @Override
         public void onBeginOfSpeech() {
@@ -96,6 +103,7 @@ public class IatHandler {
 
         @Override
         public void onEndOfSpeech() {
+            Log.d("__d", "iat on end");
             if (iatAction != null) iatAction.onFinish();
         }
 
@@ -103,11 +111,12 @@ public class IatHandler {
         public void onResult(RecognizerResult recognizerResult, boolean b) {
             buffer.append(recognizerResult.getResultString());
             if (iatAction != null) iatAction.onResult(buffer);
+            Log.d("__d", "iat on result");
         }
 
         @Override
         public void onError(SpeechError speechError) {
-            Log.d("__xf", "识别失败：" + speechError.toString());
+            Log.d("__d", "iat 识别失败：" + speechError.toString());
             if (iatAction != null) iatAction.onFinish();
         }
     };

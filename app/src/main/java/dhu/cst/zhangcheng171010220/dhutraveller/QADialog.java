@@ -87,6 +87,7 @@ public class QADialog {
     }
 
     public void close() {
+        iatHandler.cancel();
         dialog.dismiss();
     }
 }
