@@ -20,11 +20,14 @@ public class NavBar {
     View navIconNext;
     View navIconQA;
     IatHandler iatHandler;
+    TtsHandler ttsHandler;
     QADialog qaDialog;
 
-    public NavBar(Context context, ViewGroup navBarLayout, DhuView dhuView, SearchBar searchBar, IatHandler iatHandler) {
+    public NavBar(Context context, ViewGroup navBarLayout, DhuView dhuView,
+                  SearchBar searchBar, IatHandler iatHandler, TtsHandler ttsHandler) {
         this.context = context;
         this.iatHandler = iatHandler;
+        this.ttsHandler = ttsHandler;
         this.dhuView = dhuView;
         this.searchBar = searchBar;
         this.navIconSettings = navBarLayout.findViewById(R.id.nav_bar_settings);
@@ -187,7 +190,7 @@ public class NavBar {
 
     private void initQA() {
         ViewGroup view = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.nav_bar_qa_dialog, null);
-        qaDialog = new QADialog(context, view, dhuView, this, searchBar, iatHandler);
+        qaDialog = new QADialog(context, view, dhuView, this, searchBar, iatHandler, ttsHandler);
         navIconQA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -14,6 +14,8 @@ public class QAAction implements IatAction {
     private QADialog qaDialog;
     private SearchBar searchBar;
 
+    private TtsHandler ttsHandler;
+
     private TextView textViewRes;
     private TextView textViewSpeaking;
     private View buttonAgain;
@@ -25,7 +27,8 @@ public class QAAction implements IatAction {
 
     public QAAction(Context context, DhuView dhuView, NavBar navBar, QADialog qaDialog, SearchBar searchBar,
                     TextView textViewRes, ProgressBar progressBar, TextView progressBarHint,
-                    View buttonAgain, View buttonAgainDivider, TextView textViewSpeaking) {
+                    View buttonAgain, View buttonAgainDivider, TextView textViewSpeaking,
+                    TtsHandler ttsHandler) {
         this.context = context;
         this.dhuView = dhuView;
         this.qaDialog = qaDialog;
@@ -37,6 +40,7 @@ public class QAAction implements IatAction {
         this.progressBarHint = progressBarHint;
         this.buttonAgain = buttonAgain;
         this.buttonAgainDivider = buttonAgainDivider;
+        this.ttsHandler = ttsHandler;
     }
 
     @Override
@@ -79,10 +83,12 @@ public class QAAction implements IatAction {
     private void handleRes(TextView resView, String iatRes) {
         if (iatRes.contains("东华") && iatRes.contains("校训")) {
             resView.setText(R.string.dhu_motto);
+            ttsHandler.speak(context.getResources().getString(R.string.dhu_motto));
             return;
         }
         if (iatRes.contains("东华") && (iatRes.contains("简介") || iatRes.contains("介绍") || iatRes.contains("详情"))) {
             resView.setText(R.string.dhu_details);
+            ttsHandler.speak(context.getResources().getString(R.string.dhu_details));
             return;
         }
         if (iatRes.contains("下一")) {

@@ -23,17 +23,18 @@ public class MainActivity extends AppCompatActivity {
         // 创建语音配置对象
         SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5e023538");
         IatHandler iatHandler = new IatHandler(MainActivity.this);
+        TtsHandler ttsHandler = new TtsHandler(MainActivity.this);
 
         final SubsamplingScaleImageView imageView = findViewById(R.id.dhu_view);
 
         dhuView = new DhuView(this, imageView,
                 (ViewGroup) findViewById(R.id.dhu_dialog),
-                findViewById(R.id.dhu_dialog_background));
+                findViewById(R.id.dhu_dialog_background), ttsHandler);
 
         searchBar = new SearchBar(MainActivity.this,
                 dhuView, (ViewGroup) findViewById(R.id.search_bar), iatHandler);
 
         navBar = new NavBar(MainActivity.this,
-                (ViewGroup) findViewById(R.id.nav_bar), dhuView, searchBar, iatHandler);
+                (ViewGroup) findViewById(R.id.nav_bar), dhuView, searchBar, iatHandler, ttsHandler);
     }
 }

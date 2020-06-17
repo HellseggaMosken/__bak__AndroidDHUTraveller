@@ -3,6 +3,7 @@ package dhu.cst.zhangcheng171010220.dhutraveller;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,21 +25,24 @@ public class QADialog {
     private TextView progressBarHint;
 
     private IatHandler iatHandler;
+    private TtsHandler ttsHandler;
     private QAAction qaAction;
 
 
     public QADialog(Context context, ViewGroup layout,
                     DhuView dhuView, NavBar navBar,
                     SearchBar searchBar,
-                    IatHandler iatHandler) {
+                    IatHandler iatHandler,
+                    TtsHandler ttsHandler) {
         this.context = context;
         this.iatHandler = iatHandler;
+        this.ttsHandler = ttsHandler;
         this.layout = layout;
         initLayout(layout);
         initDialog(layout);
         this.qaAction = new QAAction(context, dhuView, navBar, this, searchBar,
                 textViewRes, progressBar, progressBarHint, buttonAgain, buttonAgainDivider,
-                textViewSpeaking);
+                textViewSpeaking, ttsHandler);
     }
 
     private void initLayout(ViewGroup layout) {
@@ -75,6 +79,14 @@ public class QADialog {
         int width = outMetrics.widthPixels;
         float margin = context.getResources().getDimension(R.dimen.dialog_horizontal_margin);
         window.setLayout(width - (int)(2 * margin), WindowManager.LayoutParams.WRAP_CONTENT);
+
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                iatHandler.cancel();
+                ttsHandler.stopSpeaking();
+            }
+        });
     }
 
     public boolean isShowing() {
@@ -87,7 +99,6 @@ public class QADialog {
     }
 
     public void close() {
-        iatHandler.cancel();
         dialog.dismiss();
     }
 }
