@@ -117,8 +117,12 @@ public class DhuView {
             return accurateSearch("宿舍区");
         } else if (str.contains("东门")) {
             return accurateSearch("东大门");
-        }else if (str.contains("北门")) {
+        } else if (str.contains("北门")) {
             return accurateSearch("北大门");
+        } else if (str.contains("图书馆")) {
+            return accurateSearch("图文信息中心");
+        } else if (str.contains("活动中心")) {
+            return accurateSearch("大学生活动中心");
         }
         return null;
     }
