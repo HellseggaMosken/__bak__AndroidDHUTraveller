@@ -171,6 +171,7 @@ public class DhuDialog {
         layout.setVisibility(View.INVISIBLE);
         backgroundView.startAnimation(animationBgNormal);
         backgroundView.setVisibility(View.INVISIBLE);
+        ttsHandler.stopSpeaking();
         if (navBar != null) {
             navBar.disableLast();
             navBar.resetNext();
