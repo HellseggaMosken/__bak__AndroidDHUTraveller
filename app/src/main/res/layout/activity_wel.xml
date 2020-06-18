@@ -4,7 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".WelActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/dhu_o_07"
+        android:scaleType="centerCrop"
+        android:alpha="1"
+        />
 
     <ImageView
         android:layout_width="wrap_content"

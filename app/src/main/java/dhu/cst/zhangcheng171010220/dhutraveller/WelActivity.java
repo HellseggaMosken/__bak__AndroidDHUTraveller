@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 public class WelActivity extends AppCompatActivity {
 
@@ -11,6 +12,8 @@ public class WelActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wel);
+
+        fullscreen();
 
         Thread myThread = new Thread() {
             @Override
@@ -26,5 +29,13 @@ public class WelActivity extends AppCompatActivity {
             }
         };
         myThread.start();
+    }
+
+    // 隐藏状态栏
+    private void fullscreen() {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        getWindow().setAttributes(lp);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }
